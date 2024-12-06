@@ -7,7 +7,6 @@ import {
   Box,
   Button,
   Flex,
-  Grid,
   HStack,
   Icon,
   Link,
@@ -50,11 +49,6 @@ export default function AuthNavbar(props) {
     onOpen: onOpenMain,
     onClose: onCloseMain,
   } = useDisclosure();
-  const {
-    isOpen: isOpenNft,
-    onOpen: onOpenNft,
-    onClose: onCloseNft,
-  } = useDisclosure();
   // Menus
   function getLinks(routeName) {
     let foundRoute = routes.filter(function (route) {
@@ -77,8 +71,7 @@ export default function AuthNavbar(props) {
   let authObject = getLinksCollapse("Authentication");
   let mainObject = getLinksCollapse("Main Pages");
   let dashboardsObject = getLinks("Dashboards");
-  let nftsObject = getLinks("NFTs");
-  let logoColor = useColorModeValue("white", "white");
+  // let logoColor = useColorModeValue("white", "white");
   // Chakra color mode
 
   const textColor = useColorModeValue("navy.700", "white");
