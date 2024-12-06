@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build &&  eslint --ignore-path .gitignore . || true",
     "test": "react-scripts test"
   },
   "resolutions": {

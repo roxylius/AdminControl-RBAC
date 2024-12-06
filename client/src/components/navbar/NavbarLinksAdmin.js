@@ -61,6 +61,7 @@ import {
         method:"DELETE",
         credentials:"include"
       });
+      console.log(response);
   
       //delete user from localStorage
       localStorage.clear();
