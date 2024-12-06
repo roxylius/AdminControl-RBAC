@@ -54,25 +54,25 @@ This component allows the admin to view, add, edit, or remove users.
   <summary>API Endpoint</summary>
   <br/>
   
-  #### &nbsp;      **1. `/api/user/all`** 
+  #### &nbsp;      **1. `/api/user/all`**
   **Method**: `GET`
   **Description**: Retrieves a list of all users in the system. 
 
   #### &nbsp;      **2. `/api/user/add`** 
-  **Method**: `POST` 
+  **Method**: `POST`
   **Description**: Adds a new user to the system with specified details. 
 
 
   #### &nbsp;      **3. `/api/user/edit`** 
-  **Method**: `PUT` 
+  **Method**: `PUT`
   **Description**: Updates the details of an existing user based on their email. 
 
   #### &nbsp;      **4. `/api/user/delete`** 
-  **Method**: `DELETE` 
+  **Method**: `DELETE`
   **Description**: Deletes a user from the system based on their email. 
 
   #### &nbsp;      **5. `/api/user`** 
-  **Method**: `GET` 
+  **Method**: `GET`
   **Description**: Retrieves the details of the currently authenticated user. 
     
 </details>
