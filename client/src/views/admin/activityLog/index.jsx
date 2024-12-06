@@ -120,6 +120,7 @@ export default function ActivityLog() {
   //fetches user list if not present in localStorage
   useEffect(() => {
     async function fetchData() {
+      localStorage.removeItem("logList");
       if (localStorage.getItem("logList") == null && logData == null) {
         //as no user list found fetch userlist from server
         const response = await fetch(`${server_url}/api/log`);

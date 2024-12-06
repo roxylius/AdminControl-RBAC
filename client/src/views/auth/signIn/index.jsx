@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -11,6 +11,11 @@ import {
   Text,
   Spinner,
   useColorModeValue,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverBody,
 } from '@chakra-ui/react';
 
 import DefaultAuth from 'layouts/auth/Default';
@@ -24,6 +29,7 @@ function SignIn() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [quickLoginRole, setQuickLoginRole] = useState(null); // Add state for quick login role
   const handleClickShowPassword = () => setShow(!show);
 
   // Form data state
@@ -31,6 +37,20 @@ function SignIn() {
     email: '',
     password: '',
   });
+
+  // Add quick login credentials
+  const quickLogins = {
+    admin: { email: 'admin@mail.com', password: 'admin' },
+    dev: { email: 'dev@mail.com', password: 'dev' },
+    viewer: { email: 'viewer@mail.com', password: 'viewer' },
+  };
+
+  // Function to handle quick login
+  const handleQuickLogin = (role) => {
+    const credentials = quickLogins[role];
+    setFormData(credentials);
+    setQuickLoginRole(role); // Set the quick login role
+  };
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -66,6 +86,13 @@ function SignIn() {
       setLoading(false);
     }
   };
+
+  // Submit the form when quick login role changes
+  useEffect(() => {
+    if (quickLoginRole) {
+      handleSubmit({ preventDefault: () => {} });
+    }
+  }, []);
 
   const textColor = useColorModeValue('navy.700', 'white');
   const textColorSecondary = 'gray.400';
@@ -177,6 +204,43 @@ function SignIn() {
               spinner={<Spinner />}>
               Sign In
             </Button>
+
+            {/* Add Quick Login Popover here */}
+            <Popover>
+              <PopoverTrigger>
+                <Button variant='ghost' bgColor="#3311db" color="#3c3c3c" size='sm' borderRadius="10" ml='0'>
+                  Quick Login
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent bg='#EDF2F7'> {/* Light gray background */}
+                <PopoverArrow />
+                <PopoverBody>
+                  <Button
+                    w='100%'
+                    mb='8px'
+                    onClick={() => handleQuickLogin('admin')}
+                    bg='#3182CE' // Hex code for blue
+                    color='white'>
+                    Admin
+                  </Button>
+                  <Button
+                    w='100%'
+                    mb='8px'
+                    onClick={() => handleQuickLogin('dev')}
+                    bg='#38A169' // Hex code for green
+                    color='white'>
+                    Dev
+                  </Button>
+                  <Button
+                    w='100%'
+                    onClick={() => handleQuickLogin('viewer')}
+                    bg='#805AD5' // Hex code for purple
+                    color='white'>
+                    Viewer
+                  </Button>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
           </form>
           <Flex
             flexDirection='column'

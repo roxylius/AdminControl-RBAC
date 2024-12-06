@@ -23,6 +23,7 @@ export default function UserReports() {
   //get all count from localStorage or server
   useEffect(()=>{
     const fetchData = async () => {
+      localStorage.removeItem('count');
       const countObj = await getCount();
       console.log({countObj});
       setCount(countObj);
