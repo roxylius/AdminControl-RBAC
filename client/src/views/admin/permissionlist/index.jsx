@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Text, Grid, Flex, useColorModeValue,Checkbox } from "@chakra-ui/react";
+import { Box, Text, Grid, Flex, useColorModeValue } from "@chakra-ui/react";
 
 import TablePermissionList from "views/admin/permissionlist/components/TablePermissionList";
 import Card from "components/card/Card.js";
@@ -17,7 +17,6 @@ export default function PermissionsList() {
   });
 
   const textColor = useColorModeValue('secondaryGray.900', 'white');
-  const textColorSecondary = useColorModeValue('secondaryGray.600', 'white');
 
   const columnsData = [
     columnHelper.accessor('name', {

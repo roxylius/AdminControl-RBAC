@@ -13,8 +13,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-  Box,
   Center,
   Spinner,
 } from '@chakra-ui/react';

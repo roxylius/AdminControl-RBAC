@@ -101,7 +101,7 @@ export default function AuthNavbar(props) {
       alignItems='center'
       color={mainText}>
       <Stack direction='row' spacing='12px' align='center' justify='center'>
-        <HorizonLogo h='26px' w='175px' color={logoColor} />
+        {/* <HorizonLogo h='26px' w='175px' color={logoColor} /> */}
       </Stack>
       <Text fontsize='sm' mt='3px'>
         {logoText}
@@ -120,7 +120,7 @@ export default function AuthNavbar(props) {
         justifyContent='center'
         alignItems='center'
         color={mainText}>
-        <HorizonLogo h='26px' w='175px' my='32px' color={logoColor} />
+        {/* <HorizonLogo h='26px' w='175px' my='32px' color={logoColor} /> */}
       </Link>
     );
     // mainText = useColorModeValue("gray.700", "gray.200");
@@ -310,32 +310,6 @@ export default function AuthNavbar(props) {
               <SimpleGrid columns='3' gap='10px' minW='500px' me='20px'>
                 {createAuthLinks(authObject)}
               </SimpleGrid>
-              {/* <Flex
-                bg='red'
-                direction='column'
-                justify='center'
-                align='center'
-                w='stretch'
-                minH='230px'
-                borderRadius='15px'>
-                <IconBox
-                  bg='white'
-                  color='white'
-                  borderRadius='50%'
-                  h='50px'
-                  w='50px'
-                  mb='12px'>
-                  <Icon as={AiFillStar} w='25px' h='25px' color='blue.500' />
-                </IconBox>
-                <Text
-                  fontSize='xl'
-                  fontWeight='bold'
-                  color='#fff'
-                  maxW='80%'
-                  textAlign='center'>
-                  Explore our utilities pages
-                </Text>
-              </Flex> */}
             </Flex>
           </MenuList>
         </Menu>
@@ -375,45 +349,6 @@ export default function AuthNavbar(props) {
             <Flex flexWrap='wrap' align='start' w='500px' gap='16px'>
               {createMainLinks(mainObject)}
             </Flex>
-          </MenuList>
-        </Menu>
-      </Stack>
-      <Stack
-        direction='row'
-        spacing='4px'
-        align='center'
-        color='#fff'
-        fontWeight='bold'
-        onMouseEnter={onOpenNft}
-        onMouseLeave={onCloseNft}
-        cursor='pointer'
-        position='relative'>
-        <Text fontSize='sm' color={mainText}>
-          NFTs
-        </Text>
-        <Box>
-          <Icon
-            mt='8px'
-            as={GoChevronDown}
-            color={mainText}
-            w='14px'
-            h='14px'
-            fontWeight='2000'
-          />
-        </Box>
-        <Menu isOpen={isOpenNft}>
-          <MenuList
-            bg={menuBg}
-            p='22px'
-            minW='350px'
-            cursor='default'
-            borderRadius='15px'
-            position='absolute'
-            top='30px'
-            left='-10px'>
-            <Grid templateColumns='repeat(2, 1fr)' gap='16px'>
-              {createNftsLinks(nftsObject)}
-            </Grid>
           </MenuList>
         </Menu>
       </Stack>

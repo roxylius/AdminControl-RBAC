@@ -1,5 +1,5 @@
 // Chakra imports
-import { Avatar, Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import { Avatar, Box, Text, useColorModeValue } from "@chakra-ui/react";
 import Card from "components/card/Card.js";
 import React from "react";
 

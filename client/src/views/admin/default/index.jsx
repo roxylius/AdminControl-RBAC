@@ -1,13 +1,8 @@
 // Chakra imports
 import {
-  Avatar,
   Box,
-  Flex,
-  FormLabel,
   Icon,
-  Select,
   SimpleGrid,
-  mpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
 
