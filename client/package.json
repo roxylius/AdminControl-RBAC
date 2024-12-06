@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build &&  eslint --ignore-path .gitignore . || true",
+    "build": "react-scripts build && echo '/* /index.html  200' | cat >build/_redirects",
     "test": "react-scripts test"
   },
   "resolutions": {
