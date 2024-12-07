@@ -27,6 +27,9 @@ export default function Test(){
             <h1>
                 {data ? JSON.stringify(data) : null}
             </h1>
+            <h1>
+                {data ? "Your Session is Authenticated and Saved on Server!...." : "Your Not Authenticated!...."}
+            </h1>
         </>
     );
 }; 

@@ -114,13 +114,13 @@ const routes = [
     icon: <Icon as={MdPersonAdd} width="20px" height="20px" color="inherit" />,
     component: <SignUpForm />,
   },
-  // {
-  //   name: 'Test Feat',
-  //   layout: '/admin',
-  //   path: '/test',
-  //   icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
-  //   component: <Test />,
-  // },
+  {
+    name: 'Test Feat',
+    layout: '/admin',
+    path: '/test',
+    icon: <Icon as={MdLock} width="20px" height="20px" color="inherit" />,
+    component: <Test />,
+  },
 ];
 
 export default routes;
