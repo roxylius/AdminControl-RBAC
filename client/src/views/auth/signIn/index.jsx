@@ -87,7 +87,7 @@ function SignIn() {
         setLoading(false);
       }
     },
-    [formData, navigate, server_url] // Include all external dependencies
+    [formData, navigate] // Include all external dependencies
   );
 
   // Submit the form when quick login role changes
