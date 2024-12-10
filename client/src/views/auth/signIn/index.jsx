@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -59,33 +59,36 @@ function SignIn() {
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await fetch(server_url + '/api/login', {
-        method: 'POST',
-        credentials:"include",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        const body = await response.json();
-        localStorage.setItem('user', JSON.stringify(body.user));
-        // Handle successful login
-        navigate('/admin/default');
-      } else {
-        const data = await response.json();
-        alert(data.message || 'Login failed');
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setLoading(true);
+      try {
+        const response = await fetch(server_url + '/api/login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        if (response.ok) {
+          const body = await response.json();
+          localStorage.setItem('user', JSON.stringify(body.user));
+          // Handle successful login
+          navigate('/admin/default');
+        } else {
+          const data = await response.json();
+          alert(data.message || 'Login failed');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    [formData, navigate, server_url] // Include all external dependencies
+  );
 
   // Submit the form when quick login role changes
   useEffect(() => {
