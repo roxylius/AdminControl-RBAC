@@ -16,6 +16,7 @@ import {
   PopoverContent,
   PopoverArrow,
   PopoverBody,
+  useDisclosure
 } from '@chakra-ui/react';
 
 import DefaultAuth from 'layouts/auth/Default';
@@ -30,6 +31,7 @@ function SignIn() {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [quickLoginRole, setQuickLoginRole] = useState(null); // Add state for quick login role
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const handleClickShowPassword = () => setShow(!show);
 
   // Form data state
@@ -50,6 +52,7 @@ function SignIn() {
     const credentials = quickLogins[role];
     setFormData(credentials);
     setQuickLoginRole(role); // Set the quick login role
+    onClose();
   };
 
   // Handle form input changes
@@ -209,7 +212,7 @@ function SignIn() {
             </Button>
 
             {/* Add Quick Login Popover here */}
-            <Popover>
+            <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
               <PopoverTrigger>
                 <Button variant='ghost' bgColor="#3311db" color="#3c3c3c" size='sm' borderRadius="10" ml='0'>
                   Quick Login

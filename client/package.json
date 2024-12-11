@@ -29,9 +29,9 @@
   },
   "scripts": {
     "start": "npx serve -s build",
-    "build": "react-scripts build &&  eslint --ignore-path .gitignore . || true",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "serve": "npx serve -s build"
+    "dev": "react-scripts start"
   },
   "resolutions": {
     "react-error-overlay": "6.0.9"
