@@ -10,14 +10,17 @@ export const getUserList = async () => {
   if (userList) {
     return JSON.parse(userList);
   } else {
+
     try{
       const response = await fetch(`${server_url}/api/user/all`);
       const data = await response.json();
       localStorage.setItem("userList", JSON.stringify(data));
+      return data;
+
     }catch(error){
-      console.log("Err in Connecting to server:",error)
+      console.log("Err in Connecting to server:",error);
+      return null;
     }
-    return data;
   }
 };
 
