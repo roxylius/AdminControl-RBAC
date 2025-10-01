@@ -36,6 +36,9 @@ jobs:
       
       - name: Build React app
         working-directory: ./client
+        env:
+          # Add your backend URL here - CRITICAL!
+          REACT_APP_SERVER_URL: ${{ secrets.REACT_APP_SERVER_URL }}
         run: npm run build
       
       - name: Setup Pages

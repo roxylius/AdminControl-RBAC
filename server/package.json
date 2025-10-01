@@ -7,7 +7,6 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
-
   },
   "author": "Roxylius",
   "license": "ISC",
@@ -22,7 +21,6 @@
     "mongoose-findorcreate": "^4.0.0",
     "passport": "^0.7.0",
     "passport-github2": "^0.1.12",
-    "passport-google-oauth20": "^2.0.0",
     "passport-local-mongoose": "^8.0.0"
   }
 }

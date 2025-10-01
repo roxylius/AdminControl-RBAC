@@ -10,7 +10,6 @@ export const getUserList = async () => {
   if (userList) {
     return JSON.parse(userList);
   } else {
-
     try{
       const response = await fetch(`${server_url}/api/user/all`);
       const data = await response.json();
