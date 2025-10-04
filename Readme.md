@@ -1,5 +1,7 @@
 # Admin Control - A Responsive Full-Stack Role-Based Access Control (RBAC) System
 
+> **🚀 Quick Start**: The system automatically creates dummy data (roles, permissions, and users) when the server starts if the database is empty. No manual setup required!
+
 ### Dummy Role-Based Login Credentials
 
 **Admin**  
@@ -7,15 +9,15 @@
 - **Password**: `admin`  
 - **Permissions**: Can **read**, **write**, and **delete**.  
 
-**Viewer**  
-- **Email**: `viewer@mail.com`  
-- **Password**: `viewer`  
-- **Permissions**: Can only **read**.  
-
 **Dev**  
 - **Email**: `dev@mail.com`  
 - **Password**: `dev`  
 - **Permissions**: Can **read** and **write**.  
+
+**Viewer**  
+- **Email**: `viewer@mail.com`  
+- **Password**: `viewer`  
+- **Permissions**: Can only **read**.  
 
 ---
 
@@ -225,3 +227,27 @@ Displays logs to track user actions and maintain system accountability.
 Provides a summary of the system's current state, including user statistics and role assignments.  
 <br/>
 <img width="640" alt="dashboard" src="https://github.com/user-attachments/assets/24878f0a-a453-4708-9359-117d174cea14">
+
+---
+
+## 🌱 Auto-Seeding Feature
+
+The application automatically seeds the database with dummy data when the server starts if the collections are empty:
+
+### Default Permissions
+- **read**: Permission to view and read data
+- **write**: Permission to create and edit data
+- **delete**: Permission to delete data
+
+### Default Roles
+- **Admin**: Full access with read, write, and delete permissions
+- **Dev**: Developer access with read and write permissions
+- **Viewer**: View-only access with read permission
+
+### Default Users
+Three test users are automatically created with the credentials listed above. This allows you to:
+- Start testing immediately without manual setup
+- Understand the RBAC system with pre-configured examples
+- Sign up new users with existing roles and permissions
+
+**Note**: The seeding only happens once when collections are empty. Existing data is never overwritten.
