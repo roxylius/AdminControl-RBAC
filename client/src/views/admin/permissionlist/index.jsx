@@ -62,14 +62,23 @@ export default function PermissionsList() {
   useEffect(() => {
     async function fetchData() {
       if (localStorage.getItem("permissionList") == null && permissionsData.length === 0) {
-        console.log('Server URL:', server_url);
-        const response = await fetch(`${server_url}/api/permission`);
-        console.log("response", response);
-
-        const body = await response.json();
-        console.log("body", body);
-        localStorage.setItem("permissionList", JSON.stringify(body));
-        setPermissionsData(body);
+        try {
+          console.log('Server URL:', server_url);
+          const response = await fetch(`${server_url}/api/permission`);
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          console.log("response", response);
+          const body = await response.json();
+          console.log("body", body);
+          localStorage.setItem("permissionList", JSON.stringify(body));
+          setPermissionsData(body);
+        } catch (error) {
+          console.error("Error fetching permissions:", error);
+          setPermissionsData([]);
+        }
       }
     }
     fetchData();

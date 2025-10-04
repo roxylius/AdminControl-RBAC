@@ -46,26 +46,28 @@ export default function RoleForm({ isOpen, onClose, role, onSave, permissionsLis
   const handleSubmit = async () => {
     setLoading(true);
 
-    //if role present then edit else add role
-    console.log({formData})
-    const url = role ? `${server_url}/api/role/edit` : `${server_url}/api/role/add`;
-    const method = role ? 'PUT' : 'POST';
+    try {
+      //if role present then edit else add role
+      console.log({formData})
+      const url = role ? `${server_url}/api/role/edit` : `${server_url}/api/role/add`;
+      const method = role ? 'PUT' : 'POST';
 
-    const loggedUser = JSON.parse(localStorage.getItem("user"));
+      const loggedUser = JSON.parse(localStorage.getItem("user"));
 
-    const response = await fetch(url, {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({...formData,user : loggedUser}),
-    });
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({...formData,user : loggedUser}),
+      });
 
-    const result = await response.json(); //get response body
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-    setLoading(false);
+      const result = await response.json(); //get response body
 
-    if (response.ok) {
       // Save modified formData in localStorage
       let rolesList = await getRolesList() || [];
       if (role) {
@@ -80,8 +82,11 @@ export default function RoleForm({ isOpen, onClose, role, onSave, permissionsLis
       // send the updated rolesList array to parent to display the new data 
       onSave(rolesList);
       onClose();
-    } else {
-      console.error(result.message);
+    } catch (error) {
+      console.error('Error in handleSubmit:', error);
+      alert('Failed to save role. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 

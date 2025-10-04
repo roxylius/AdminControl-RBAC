@@ -7,14 +7,24 @@ export default function Test(){
 
     useEffect(()=>{
         const fetchData = async () => {
-            const response = await fetch(server_url+"/api/user",{
-                method:"GET",
-                credentials:"include",
-            });
-            console.log({response});
-            const body = await response.json();
-            console.log({body});
-            setData(body);
+            try {
+                const response = await fetch(server_url+"/api/user",{
+                    method:"GET",
+                    credentials:"include",
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                console.log({response});
+                const body = await response.json();
+                console.log({body});
+                setData(body);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                setData(null);
+            }
         }
         fetchData();
     },[])

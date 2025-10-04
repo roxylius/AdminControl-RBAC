@@ -122,14 +122,23 @@ export default function ActivityLog() {
     async function fetchData() {
       localStorage.removeItem("logList");
       if (localStorage.getItem("logList") == null && logData == null) {
-        //as no user list found fetch userlist from server
-        const response = await fetch(`${server_url}/api/log`);
+        try {
+          //as no user list found fetch userlist from server
+          const response = await fetch(`${server_url}/api/log`);
 
-        const body = await response.json();
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
 
-        localStorage.setItem("logList",JSON.stringify(body));
-        // console.log("localStorage.setItem('logList',JSON.stringify(body));",body);
-        setLogData(body);
+          const body = await response.json();
+
+          localStorage.setItem("logList",JSON.stringify(body));
+          // console.log("localStorage.setItem('logList',JSON.stringify(body));",body);
+          setLogData(body);
+        } catch (error) {
+          console.error("Error fetching activity logs:", error);
+          setLogData([]);
+        }
       }
     }
     fetchData();

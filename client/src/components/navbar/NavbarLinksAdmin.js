@@ -55,31 +55,39 @@ import {
         setUser(JSON.parse(storedUser));
     },[]);
   
-    //remove session stored in server and localStorage
-    const handleLogout = async () => {
+  //remove session stored in server and localStorage
+  const handleLogout = async () => {
+    try {
       const response = await fetch(server_url+"/api/logout",{
         method:"DELETE",
         credentials:"include"
       });
+      
+      if (!response.ok) {
+        console.warn(`Logout request failed with status: ${response.status}`);
+      }
+      
       console.log(response);
-  
-      //delete user from localStorage
+    } catch (error) {
+      console.error("Error during logout:", error);
+    } finally {
+      //delete user from localStorage regardless of server response
       localStorage.clear();
-  
       navigate("/auth/sign-in");
     }
-  
-    return (
-      <Flex
-        w={{ sm: '100%', md: 'auto' }}
-        alignItems="center"
-        flexDirection="row"
-        bg={menuBg}
-        flexWrap={secondary ? { base: 'wrap', md: 'nowrap' } : 'unset'}
-        p="10px"
-        borderRadius="30px"
-        boxShadow={shadow}
-      >
+  };
+
+  return (
+    <Flex
+      w={{ sm: '100%', md: 'auto' }}
+      alignItems="center"
+      flexDirection="row"
+      bg={menuBg}
+      flexWrap={secondary ? { base: 'wrap', md: 'nowrap' } : 'unset'}
+      p="10px"
+      borderRadius="30px"
+      boxShadow={shadow}
+    >
         {/* <SearchBar
           mb={() => {
             if (secondary) {

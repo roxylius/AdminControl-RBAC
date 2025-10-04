@@ -37,23 +37,28 @@ const OverlayForm = ({ isOpen, onClose, permission, onSave }) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const url = permission ? `${server_url}/api/permission/edit` : `${server_url}/api/permission/add`;
-    const method = permission ? 'PUT' : 'POST';
-    const currentUser = JSON.parse(localStorage.getItem('user'));
 
-    const response = await fetch(url, {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...formData, user: currentUser }),
-    });
+    try {
+      const url = permission ? `${server_url}/api/permission/edit` : `${server_url}/api/permission/add`;
+      const method = permission ? 'PUT' : 'POST';
+      const currentUser = JSON.parse(localStorage.getItem('user'));
 
-    const result = await response.json();
-    console.log({response});
-    console.log({result});
-    setLoading(false);
-    if (response.ok) {
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, user: currentUser }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log({response});
+      console.log({result});
+
       // Update localStorage and React state
       let permissionsList = JSON.parse(localStorage.getItem('permissionList')) || [];
       if (permission) {
@@ -69,8 +74,11 @@ const OverlayForm = ({ isOpen, onClose, permission, onSave }) => {
       // Pass the updated permissions list to the parent component
       onSave(permissionsList);
       onClose();
-    } else {
-      console.error({result:result.message});
+    } catch (error) {
+      console.error('Error in handleSubmit:', error);
+      alert('Failed to save permission. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 

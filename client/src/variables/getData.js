@@ -10,16 +10,17 @@ export const getUserList = async () => {
   if (userList) {
     return JSON.parse(userList);
   } else {
-
-    try{
+    try {
       const response = await fetch(`${server_url}/api/user/all`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       localStorage.setItem("userList", JSON.stringify(data));
       return data;
-
-    }catch(error){
-      console.log("Err in Connecting to server:",error);
-      return null;
+    } catch (error) {
+      console.error("Error in getUserList:", error);
+      return [];
     }
   }
 };
@@ -33,10 +34,18 @@ export const getPermissionsList = async () => {
   if (permissionsList) {
     return JSON.parse(permissionsList);
   } else {
-    const response = await fetch(`${server_url}/api/permission`);
-    const data = await response.json();
-    localStorage.setItem("permissionList", JSON.stringify(data));
-    return data;
+    try {
+      const response = await fetch(`${server_url}/api/permission`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      localStorage.setItem("permissionList", JSON.stringify(data));
+      return data;
+    } catch (error) {
+      console.error("Error in getPermissionsList:", error);
+      return [];
+    }
   }
 };
 
@@ -49,10 +58,18 @@ export const getRolesList = async () => {
   if (rolesList) {
     return JSON.parse(rolesList);
   } else {
-    const response = await fetch(`${server_url}/api/role`);
-    const data = await response.json();
-    localStorage.setItem("roleList", JSON.stringify(data));
-    return data;
+    try {
+      const response = await fetch(`${server_url}/api/role`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      localStorage.setItem("roleList", JSON.stringify(data));
+      return data;
+    } catch (error) {
+      console.error("Error in getRolesList:", error);
+      return [];
+    }
   }
 };
 
@@ -67,10 +84,18 @@ export const getLogList = async () => {
   if (logList) {
     return JSON.parse(logList);
   } else {
-    const response = await fetch(`${server_url}/api/log`);
-    const data = await response.json();
-    localStorage.setItem("logList", JSON.stringify(data));
-    return data;
+    try {
+      const response = await fetch(`${server_url}/api/log`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      localStorage.setItem("logList", JSON.stringify(data));
+      return data;
+    } catch (error) {
+      console.error("Error in getLogList:", error);
+      return [];
+    }
   }
 };
 
@@ -84,9 +109,18 @@ export const getUser = async () => {
   if(user){
     return JSON.parse(user);
   } else {
-    const response = await fetch(`${server_url}/api/user`);
-    console.log("body",await response.json());
-    // const data = await repon
+    try {
+      const response = await fetch(`${server_url}/api/user`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("body", data);
+      return data;
+    } catch (error) {
+      console.error("Error in getUser:", error);
+      return null;
+    }
   }
 }
 
