@@ -21,7 +21,7 @@ const logRouter = require('./views/rbac/handleLog');
 const app = express();
 
 //set up middleware
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:4444', 'https://admin-control-rbac.vercel.app', 'http://localhost:7501'], credentials: true, methods: ['GET', 'POST', 'DELETE','PUT'] })); //to enable cross origin resourse sharing ie make post,get,etc request form different url
+app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'https://roxylius.github.io/AdminControl-RBAC', 'https://admin-control-rbac.vercel.app', 'http://localhost:7501'], credentials: true, methods: ['GET', 'POST', 'DELETE','PUT'] })); //to enable cross origin resourse sharing ie make post,get,etc request form different url
 app.use(bodyParser.urlencoded({ extended: true })); //to read the post request from html form
 app.use(express.json()); //to interpret json
 var store = new MongoDBStore( //setup to store the session in DB
