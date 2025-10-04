@@ -35,6 +35,7 @@ export const getPermissionsList = async () => {
     return JSON.parse(permissionsList);
   } else {
     try {
+      console.log("server_url:",server_url);
       const response = await fetch(`${server_url}/api/permission`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
