@@ -79,7 +79,7 @@ This component allows the admin to view, add, edit, or remove users.
     
 </details>
 <br/>
-<img width="640" alt="users" src="https://github.com/user-attachments/assets/ae2d73ee-e1fa-4320-9d11-e3b2b26bca90">
+<img width="640" alt="users" src="https://github.com/user-attachments/assets/5c0007bf-cb07-4bcd-bae7-a72354747634" />
 
 ---
 
