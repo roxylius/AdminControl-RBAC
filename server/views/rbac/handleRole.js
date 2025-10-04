@@ -4,7 +4,7 @@ const express = require("express");
 const roleRouter = express.Router();
 
 //import role to search the role in collection Role in mongodb
-const Role = require("../../schema/Role");
+const Role = require("../../schema/role");
 
 //import log to record and timestamp each action
 const Log = require("../../schema/log");
